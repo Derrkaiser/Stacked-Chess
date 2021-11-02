@@ -53,6 +53,8 @@ public class FullMoveUI : MonoBehaviour {
 
 	public void ValidateMoveHighlights() {
 		int halfMoveCount = GameManager.Instance.HalfMoveCount;
+
+		/* Updates the display in the top-right to show moves */
 		whiteMoveHighlight.SetActive(halfMoveCount == WhiteHalfMoveIndex);
 		blackMoveHighlight.SetActive(halfMoveCount == BlackHalfMoveIndex);
 	}
