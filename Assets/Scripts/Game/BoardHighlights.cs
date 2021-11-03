@@ -31,12 +31,16 @@ public class BoardHighlights : MonoBehaviour
         return go;
     }
 
-    public void HighLightAllowedMoves(int x)
+    public void HighLightAllowedMoves(Piece piece)
     {
 
         string debMsg = $"# of valid moves: {piece.LegalMoves.Count}\n";
         foreach (Movement validMove in piece.LegalMoves)
         {
+            GameObject go = GetHighLightObject();
+            go.SetActive(true);
+            go.transform.position = new Vector3(2f, 0.0003f, 0.9f);
+
             //TODO NEED TO DISSECT THE TREE OF MOVEMENT -> START/END -> SQUARE -> FILE/RANK
             debMsg += "Start = " + $"{validMove.Start}\n";
         }

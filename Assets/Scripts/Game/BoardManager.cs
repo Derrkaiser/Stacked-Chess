@@ -12,6 +12,10 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager> {
 	private const float BoardHeight = 1.6f;
 	private readonly System.Random rng = new System.Random();
 
+
+	public GameObject highlightPrefab;
+	private List<GameObject> highlights;
+
 	private void Start() {
 		GameManager.Instance.NewGameStarted += OnNewGameStarted;
 		GameManager.Instance.GameResetToHalfMove += OnGameResetToHalfMove;
@@ -19,18 +23,27 @@ public class BoardManager : MonoBehaviourSingleton<BoardManager> {
 		positionMap = new Dictionary<Square, GameObject>(64);
 		Transform boardTransform = transform;
 		Vector3 boardPosition = boardTransform.position;
-		
-		for (int file = 1; file <= 8; file++) {
+
+        
+
+        for (int file = 1; file <= 8; file++) {
 			for (int rank = 1; rank <= 8; rank++) {
-				GameObject squareGO = new GameObject(FileRankToSquareString(file, rank));
+
+				// Instantiate at position (0, 0, 0) and zero rotation.
+				Instantiate(highlightPrefab, new Vector3(boardPosition.x + FileOrRankToSidePosition(file), boardPosition.y + BoardHeight, boardPosition.z + FileOrRankToSidePosition(rank)), Quaternion.identity);
+
+                GameObject squareGO = new GameObject(FileRankToSquareString(file, rank));
 				squareGO.transform.position = new Vector3(boardPosition.x + FileOrRankToSidePosition(file), boardPosition.y + BoardHeight, boardPosition.z + FileOrRankToSidePosition(rank));
 				squareGO.transform.parent = boardTransform;
 				squareGO.tag = "Square";
+				
 				
 				positionMap.Add(new Square(file, rank), squareGO);
 				AllSquaresGO[(file - 1) * 8 + (rank - 1)] = squareGO;
 			}
 		}
+
+
 	}
 
 	public void OnNewGameStarted() {
