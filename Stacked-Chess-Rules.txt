@@ -1,0 +1,18 @@
+STACKED CHESS RULES:
+
+1. Ability to stack pieces on top of eachother
+	1a. In order to stack, piece must move onto the square of another piece.
+		ex: Ra1->a2
+	1b. The stack works like a soldier on a horse. The "stacked" top piece is the soldier and the bottom piece is the horse
+	1c. The "horse" of the stack determines the movement of the piece, and the "soldier" is able to attack normally used dismount method
+
+2. Dismount Method
+	2a. A piece is able to dismount its stack in the way that that piece moves. This can be a dismount to a untaken square or to attack
+	2b. If attacking a unstacked square, the dismounted piece takes the square
+	2c. If attacked a stacked square, the dismounted piece takes the "soldier"/top piece of the stack and moves back 1 space in the direction it came from following the pieces movement pattern.
+	2ci. If the attacking piece is a knight, there is no dismount and the knight takes the opponents piece and returns back to its stack
+	2d. A dismounted piece cannot dismount and create another stack. It must either take a opponents piece or move to a untaken square.
+
+Misc.
+
+If a king is stacked onto another piece and that square is put into check, the king is also put into check and must either dismount or move out of check.
